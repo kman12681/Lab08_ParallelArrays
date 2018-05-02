@@ -108,11 +108,61 @@ namespace Lab_08
                 {
                     Console.WriteLine();
                     Console.WriteLine($"{Students[index]}'s favorite food is: {Food[index]}");
+                    Console.WriteLine();
+
+                    bool success = true;
+                    while (success)
+                    {
+                        Console.Write($"Would you like to learn more about {Students[index]}?: ");
+                        string response = Console.ReadLine().ToLower();
+                        if (!(response == "y" || response == "n"))
+                        {
+                            Console.WriteLine();
+                            Console.Write("Please enter y or n: ");
+                        }
+                        else if (response == "y")
+                        {
+                            Console.WriteLine();
+                            Console.WriteLine($"{Students[index]}'s favorite song is: \"{Songs[index]}\"");
+                            Console.WriteLine();
+                            success = false;
+                        }
+                        else
+                        {
+                            Console.WriteLine();
+                            success = false;
+                        }
+                    }
                 }
                 else if (input2 == "song")
                 {
                     Console.WriteLine();
                     Console.WriteLine($"{Students[index]}'s favorite song is: \"{Songs[index]}\"");
+                    Console.WriteLine();
+
+                    bool success = true;
+                    while (success)
+                    {
+                        Console.Write($"Would you like to learn more about {Students[index]}?: ");
+                        string response = Console.ReadLine().ToLower();
+                        if (!(response == "y" || response == "n"))
+                        {
+                            Console.WriteLine();
+                            Console.Write("Please enter y or n: ");
+                        }
+                        else if (response == "y")
+                        {
+                            Console.WriteLine();
+                            Console.WriteLine($"{Students[index]}'s favorite food is: \"{Food[index]}\"");
+                            Console.WriteLine();
+                            success = false;
+                        }
+                        else
+                        {
+                            Console.WriteLine();
+                            success = false;
+                        }
+                    }
                 }
                 else
                 {
@@ -129,6 +179,7 @@ namespace Lab_08
         static int Validate(string input)
         {
             int number;
+
             while (true)
             {
                 if (!int.TryParse(input, out number))
@@ -148,8 +199,9 @@ namespace Lab_08
                     break;
                 }
             }
-
             return number;
+
+
         }
         static string ValidateWord(string input)
 
@@ -167,7 +219,6 @@ namespace Lab_08
         {
             while (true)
             {
-                Console.WriteLine();
                 Console.Write("Would you like to learn about another student? (y/n): ");
 
                 string input = Console.ReadLine().ToUpper();
