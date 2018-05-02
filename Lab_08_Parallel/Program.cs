@@ -97,25 +97,29 @@ namespace Lab_08
                 Console.WriteLine($"That student is {Students[index]}");
                 Console.WriteLine();
 
-                Console.WriteLine($"Would you like to know {Students[index]}'s favorite 'food' or 'song to dance to'?");
+                Console.WriteLine($"Would you like to know {Students[index]}'s favorite food or song to dance to?");
                 Console.WriteLine();
 
-                Console.Write("Type 'food' or 'song': ");
+                Console.Write("Type 'food' or 'song', or 'quit': ");
                 string foodSong = Console.ReadLine().ToLower();
                 string input2 = (ValidateWord(foodSong));
 
                 if (input2 == "food")
                 {
                     Console.WriteLine();
-                    Console.WriteLine($"{Students[index]}'s favorite food is: {Food[index]}");                    
+                    Console.WriteLine($"{Students[index]}'s favorite food is: {Food[index]}");
                 }
-                else
+                else if (input2 == "song")
                 {
                     Console.WriteLine();
                     Console.WriteLine($"{Students[index]}'s favorite song is: \"{Songs[index]}\"");
                 }
+                else
+                {
+                    return;
+                }
                 again = DoAgain();
-            }           
+            }
 
             Console.WriteLine();
             Console.WriteLine("Thank you, this program will now end.");
@@ -147,37 +151,39 @@ namespace Lab_08
 
             return number;
         }
-            static string ValidateWord(string input)
+        static string ValidateWord(string input)
 
+        {
+            while (!(input == "food" || input == "song" || input == "quit"))
             {
-                while (!(input == "food" || input == "song"))
-                {
-                    Console.WriteLine("Invalid input. Type 'food' or 'song'.");
-                    input = Console.ReadLine();
-                }
-                return input;
+                Console.WriteLine();
+                Console.Write("Invalid input. Type 'food','song', or 'quit': ");
+                input = Console.ReadLine();
             }
+            return input;
+        }
 
-            static bool DoAgain()
+        static bool DoAgain()
+        {
+            while (true)
             {
-                while (true)
+                Console.WriteLine();
+                Console.Write("Would you like to learn about another student? (y/n): ");
+
+                string input = Console.ReadLine().ToUpper();
+                if (input == "Y")
+                {
+                    return true;
+                }
+                else if (input == "N")
+                {
+                    return false;
+                }
                 {
                     Console.WriteLine();
-                    Console.Write("Would you like to learn about another student? (y/n): ");
-
-                    string input = Console.ReadLine().ToUpper();
-                    if (input == "Y")
-                    {
-                        return true;
-                    }
-                    else if (input == "N")
-                    {
-                        return false;
-                    }
-                    {
-                        Console.WriteLine("Not a valid entry.");
-                    }
+                    Console.WriteLine("Not a valid entry.");
                 }
             }
         }
     }
+}
